@@ -115,7 +115,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  */
 function repeatString(value, count) {
   let res = '';
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < count; i += 1) {
     res += value;
   }
   return res;
@@ -215,8 +215,8 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   let res = '';
-  for (let i = 0; i < height; i++) {
-    for (let j = 0; j < width; j++) {
+  for (let i = 0; i < height; i += 1) {
+    for (let j = 0; j < width; j += 1) {
       let cursymb = ' ';
       if (i === 0) {
         if (j === 0) {
@@ -237,9 +237,9 @@ function getRectangleString(width, height) {
       } else if (j === 0 || j === width - 1) {
         cursymb = '│';
       }
-      res = res + cursymb;
+      res += cursymb;
     }
-    res = res + '\n';
+    res += '\n';
   }
   return res;
   // throw new Error('Not implemented');
@@ -265,12 +265,12 @@ function encodeToRot13(str) {
   const str1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   const str2 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   let res = '';
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     const ind = str1.indexOf(str[i]);
     if (ind === -1) {
-      res = res + str[i];
+      res += str[i];
     } else {
-      res = res + str2[ind];
+      res += str2[ind];
     }
   }
   return res;
@@ -292,11 +292,15 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  const a = typeof value;
-  if (a === 'object') {
-    return true;
+  // const a = typeof value;
+  if (typeof value === 'object' && value !== null && value.length === 0) {
+    return false;
   }
-  return a === 'string';
+  // if (a === 'object') {
+  //   return true;
+  // }
+  // return typeof value === 'string';
+  return Boolean(value);
   // throw new Error('Not implemented');
 }
 
