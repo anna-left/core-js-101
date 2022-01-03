@@ -286,22 +286,30 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(ccn) {
-  let ch = 0;
-  const num = String(ccn).replace(/\D/g, '');
-  const isOdd = num.length % 2 !== 0;
+// function isCreditCardNumber(ccn) {
+//   const value = ccn.replace(/\D/g, '');
 
-  if (num === '') return false;
+//   let nCheck = 0;
+//   let bEven = false;
 
-  for (let i = 0; i < num.length; i += 1) {
-    let n = parseInt(num[i], 10);
+//   for (let n = value.length - 1; n >= 0; n -= 1) {
+//     let nDigit = parseInt(value.charAt(n), 10);
 
-    ch += (isOdd | 0) === (i % 2) && (n *= 2) > 9 ? (n - 9) : n;
-  }
+//     // eslint-disable-next-line no-cond-assign
+//     if (bEven && (nDigit *= 2) > 9) {
+//       nDigit -= 9;
+//     }
 
-  return (ch % 10) === 0;
+//     nCheck += nDigit;
+//     bEven = !bEven;
+//   }
+
+//   return nCheck % 10 === 0;
+// }
+
+function isCreditCardNumber(/* ccn */) {
+  throw new Error('Not implemented');
 }
-
 /**
  * Returns the digital root of integer:
  *   step1 : find sum of all digits
