@@ -30,9 +30,9 @@
 function getFizzBuzz(num) {
   if (num % 15 === 0) {
     return 'FizzBuzz';
-  } else if (num % 5 === 0) {
+  } if (num % 5 === 0) {
     return 'Buzz';
-  } else if (num % 3 === 0) {
+  } if (num % 3 === 0) {
     return 'Fizz';
   }
   return num;
@@ -53,10 +53,9 @@ function getFizzBuzz(num) {
 function getFactorial(n) {
   let res = 1;
   for (let i = 2; i <= n; i += 1) {
-    res = res * i;
+    res *= i;
   }
-  return res
-
+  return res;
 }
 
 
@@ -75,7 +74,7 @@ function getFactorial(n) {
 function getSumBetweenNumbers(n1, n2) {
   let res = 0;
   for (let i = n1; i <= n2; i += 1) {
-    res = res + i;
+    res += i;
   }
   return res;
 }
@@ -102,9 +101,7 @@ function isTriangle(a, b, c) {
   }
   if (a + b > c && a + c > b && c + b > a) {
     return true;
-  }
-  else { return false; }
-
+  } return false;
 }
 
 
@@ -141,7 +138,6 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(rect1, rect2) {
-
   const leftX = Math.max(rect1.left, rect2.left);
   const rightX = Math.min(rect1.left + rect1.width, rect2.left + rect2.width);
   const botY = Math.max(rect1.top, rect2.top);
@@ -198,9 +194,9 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  for (let i = 0; i < str.length; i++) {
-    let curSymbol = str[i];
-    if (str.indexOf(curSymbol) == i && str.indexOf(curSymbol, i + 1) == -1) {
+  for (let i = 0; i < str.length; i += 1) {
+    const curSymbol = str[i];
+    if (str.indexOf(curSymbol) === i && str.indexOf(curSymbol, i + 1) === -1) {
       return curSymbol;
     }
   }
@@ -249,7 +245,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-  return str.split("").reverse().join("");
+  return str.split('').reverse().join('');
 }
 
 
@@ -266,7 +262,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-  return Number(String(num).split("").reverse().join(""));
+  return Number(String(num).split('').reverse().join(''));
 }
 
 
@@ -295,15 +291,15 @@ function isCreditCardNumber(ccn) {
   const num = String(ccn).replace(/\D/g, '');
   const isOdd = num.length % 2 !== 0;
 
-  if ('' === num) return false;
+  if (num === '') return false;
 
-  for (let i = 0; i < num.length; i++) {
+  for (let i = 0; i < num.length; i += 1) {
     let n = parseInt(num[i], 10);
 
-    ch += (isOdd | 0) === (i % 2) && 9 < (n *= 2) ? (n - 9) : n;
+    ch += (isOdd | 0) === (i % 2) && (n *= 2) > 9 ? (n - 9) : n;
   }
 
-  return 0 === (ch % 10);
+  return (ch % 10) === 0;
 }
 
 /**
@@ -320,27 +316,21 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(num) {
+function findSum(str) {
+  let res = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    res += Number(str[i]);
+  }
+  return res;
+}
 
+function getDigitalRoot(num) {
   let res = findSum(String(num));
   while (res > 9) {
     res = findSum(String(res));
   }
   return res;
-
 }
-
-function findSum(str) {
-  let res = 0;
-  for (let i = 0; i < str.length; i++) {
-    res = res + Number(str[i]);
-  }
-  return res;
-}
-
-
-
-
 
 /**
  * Returns true if the specified string has the balanced brackets and false otherwise.
