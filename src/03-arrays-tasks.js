@@ -619,19 +619,26 @@ function selectMany(arr, childrenSelector) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/** arr, indexes */) {
-  // let res;
-  // for (let i = 0; i < indexes.length; i++) {
-  //   const ind = indexes[i];
-  //   el = arr[ind];
-  //   res = getElement();
-  // }
-  throw new Error('Not implemented');
+
+function getElement(value, indexes, n) {
+  let nn = n;
+  if (nn === indexes.length) {
+    return value;
+  }
+  const res = value[indexes[n]];
+  nn += 1;
+  return getElement(res, indexes, nn);
 }
 
-// function getElement(arr, index) {
+function getElementByIndexes(arr, indexes) {
+  return getElement(arr, indexes, 0);
+  //   throw new Error('Not implemented');
+}
 
+// function getElementByIndexes(/** arr, indexes */) {
+//   throw new Error('Not implemented');
 // }
+
 
 /**
  * Swaps the head and tail of the specified array:
