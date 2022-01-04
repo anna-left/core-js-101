@@ -72,7 +72,7 @@ function getPolynom() {
 
 // function getPolynom(...arguments) {
 //   const n = arguments.length;
-//   let res = `${arguments[0]} * x ** ${n - 1}`;
+//   let res = `y = ${arguments[0]} * x ** ${n - 1}`;
 //   for (let i = 1; i < n; i += 1) {
 //     const c = n - i - 1;
 //     if (c === 1) {
@@ -122,6 +122,26 @@ function memoize(/* func */) {
  * }, 2);
  * retryer() => 2
  */
+
+// function callFunc(func, attempts, numberAttempts) {
+//   let curNumberAttempts = numberAttempts;
+//   let res;
+//   try {
+//     res = func();
+//   } catch (err) {
+//     // обработка ошибки
+//     curNumberAttempts += 1;
+//     if (curNumberAttempts > attempts) {
+//       res = callFunc(func, attempts, curNumberAttempts);
+//     }
+//   }
+//   return res;
+// }
+
+// function retry(func, attempts) {
+//   return () => callFunc(func, attempts, 0);
+// }
+
 function retry(/* func, attempts */) {
   throw new Error('Not implemented');
 }
