@@ -52,13 +52,13 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  if (value1 === Number.MAX_VALUE - 2 && value2 === Number.MAX_VALUE) {
-    return Number.MAX_VALUE - 1;
-  }
-  if (value1 === Number.MAX_VALUE && value2 === Number.MAX_VALUE / 2) {
-    return Number.MAX_VALUE / 4;
-  }
-  return (value1 + value2) / 2;
+  // if (value1 === Number.MAX_VALUE - 2 && value2 === Number.MAX_VALUE) {
+  //   return Number.MAX_VALUE - 1;
+  // }
+  // if (value1 === Number.MAX_VALUE && value2 === Number.MAX_VALUE / 2) {
+  //   return Number.MAX_VALUE / 4;
+  // }
+  return value1 / 2 + value2 / 2;
   // throw new Error('Not implemented');
 }
 
