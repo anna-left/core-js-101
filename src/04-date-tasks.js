@@ -113,10 +113,21 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const h = date.getUTCHours() % 12;
+  const m = date.getUTCMinutes();
+  const hDegree = (h * 60 + m) * 0.5;
+  const mDegree = 6 * m;
+  let degree = Math.max(mDegree, hDegree) - Math.min(mDegree, hDegree);
+  if (degree > 180) {
+    degree = 360 - degree;
+  }
+  return (degree * Math.PI) / 180;
+  // throw new Error('Not implemented');
 }
-
+// function angleBetweenClockHands(/* date */) {
+//   throw new Error('Not implemented');
+// }
 module.exports = {
   parseDataFromRfc2822,
   parseDataFromIso8601,
