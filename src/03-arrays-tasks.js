@@ -583,9 +583,10 @@ function distinct(arr) {
 function group(array, keySelector, valueSelector) {
   const newMap = new Map();
 
-  for (let i = 0; i < array.length; ++i) {
+  for (let i = 0; i < array.length; i += 1) {
     const key = keySelector(array[i]);
-    if (newMap.has(key)) { newMap.get(key).push(valueSelector(array[i])); } else { newMap.set(key, [valueSelector(array[i])]); }
+    if (newMap.has(key)) { newMap.get(key).push(valueSelector(array[i]));
+    } else { newMap.set(key, [valueSelector(array[i])]); }
   }
   return newMap;
 }
