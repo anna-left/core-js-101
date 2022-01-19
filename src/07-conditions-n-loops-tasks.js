@@ -224,8 +224,7 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  return `${isStartIncluded ? '[' : '('}${Math.min(a, b)}, ${Math.max(a, b)}${
-    isEndIncluded ? ']' : ')'
+  return `${isStartIncluded ? '[' : '('}${Math.min(a, b)}, ${Math.max(a, b)}${isEndIncluded ? ']' : ')'
   }`;
   // throw new Error('Not implemented');
 }
@@ -307,25 +306,26 @@ function reverseInteger(num) {
 
 // ************  #2
 
-// function isCreditCardNumber(ccn) {
-//   let ch = 0;
-//   const num = String(ccn).replace(/\D/g, '');
-//   const isOdd = num.length % 2 !== 0;
-
-//   if ('' === num) return false;
-
-//   for (let i = 0; i < num.length; i++) {
-//     let n = parseInt(num[i], 10);
-
-//     ch += (isOdd | 0) === i % 2 && 9 < (n *= 2) ? n - 9 : n;
-//   }
+function isCreditCardNumber(ccn) {
+  const cardNumber = String(ccn);
+  let res = 0;
+  for (let i = cardNumber.length - 1; i >= 0; i -= 1) {
+    let curNum = cardNumber[i] - '0';
+    if ((cardNumber.length - i) % 2 === 0) {
+      curNum *= 2;
+      if (curNum > 9) { curNum -= 9; }
+    }
+    res += curNum;
+  }
+  return res % 10 === 0;
+}
 
 //   return 0 === ch % 10;
 // }
 
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
-}
+// function isCreditCardNumber(/* ccn */) {
+//   throw new Error('Not implemented');
+// }
 /**
  * Returns the digital root of integer:
  *   step1 : find sum of all digits
@@ -377,8 +377,41 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const openBrack = ['[', '(', '{', '<'];
+  const pairBrack = {
+    ']': '[', ')': '(', '}': '{', '>': '<',
+  };
+  const stackBrack = [];
+  for (let i = 0; i < str.length; i += 1) {
+    const curSymb = str[i];
+    // ищем парную (открывающую) скобку к нашему текущему элементу
+    const pairSymb = pairBrack[curSymb];
+    // находим верхний элемент в стеке
+    const topElStack = stackBrack[stackBrack.length - 1];
+    // если это открывающая скобка
+    if (openBrack.includes(curSymb)) {
+      // открывающая и закрывающая - одинаковые
+      if (curSymb === pairSymb && curSymb === topElStack) {
+        stackBrack.pop();
+      } else {
+        // - кладем ее в стек
+        stackBrack.push(curSymb);
+      }
+    } else { // если закрывающая
+      // стек пуст - скобка непарная - ошибка
+      if (stackBrack.length === 0) {
+        return false;
+      }
+      // и если это и есть верхний элемент стека, обе скобки удаляем
+      if (pairSymb === topElStack) {
+        stackBrack.pop();
+      } else {
+        return false;
+      }
+    }
+  }
+  return stackBrack.length === 0;
 }
 
 /**
